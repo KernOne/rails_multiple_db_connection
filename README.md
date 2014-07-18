@@ -24,7 +24,7 @@ Your config/database.yml file
     production_n:
       ...
     
-Your codeode which will work with multiple connections
+Your code which will work with multiple connections
 
     # Use pipe to transfer data between fork and parent process
     reader, writer = IO.pipe
