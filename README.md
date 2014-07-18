@@ -4,29 +4,30 @@
 
 Your config/database.yml file
 
-  default: &default
-    adapter: mysql2 # or postgresql
-    encoding: utf8
-    database: your_db
-    pool: 5
-    username: your_db_username
-    password: your_db_password
-    host: 192.168.0.1
-  
-  production:
-    <<: *default
+    default: &default
+      adapter: mysql2 # or postgresql
+      encoding: utf8
+      database: your_db
+      pool: 5
+      username: your_db_username
+      password: your_db_password
+      host: 192.168.0.1
     
-  production_fork:
-    <<: *default
-    database: your_forked_db
-    host: 192.168.0.2
+    production:
+      <<: *default
+      
+    production_fork:
+      <<: *default
+      database: your_forked_db
+      host: 192.168.0.2
+      
+    production_n:
+      ...
     
-  production_n:
-    ...
-    
-## Code which will work with multiple connections
+Your codeode which will work with multiple connections
 
-    reader, writer = IO.pipe # Use pipe to transfer data between fork and parent process
+    # Use pipe to transfer data between fork and parent process
+    reader, writer = IO.pipe
 
     # Fork process to isolate the work with multiple database connections from application
     pid = fork do
